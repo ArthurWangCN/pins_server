@@ -1,0 +1,26 @@
+{
+  "name": "pins_server",
+  "version": "1.0.0",
+  "description": "pins_server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArthurWangCN/pins_server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArthurWangCN/pins_server/issues"
+  },
+  "homepage": "https://github.com/ArthurWangCN/pins_server#readme",
+  "dependencies": {
+    "koa": "^2.13.4",
+    "koa-bodyparser": "^3.2.0",
+    "koa-router": "^7.4.0",
+    "mysql": "^2.18.1"
+  }
+}
