@@ -18,7 +18,7 @@ async function addPin(ctx) {
   if (!url) {
     ctx.body = {
       code: 400,
-      msg: 'url字段为空',
+      msg: 'url字段不能为空',
       data: null
     }
   }
@@ -39,7 +39,35 @@ async function addPin(ctx) {
   }
 }
 
+// 删除收藏
+async function deletePin(ctx) {
+  const { id } = ctx.request.body;
+  if (!id) {
+    ctx.body = {
+      code: 400,
+      msg: 'id字段不能为空',
+      data: null
+    }
+  }
+  try {
+    let sql = `delete from pin where id='${id}'`;
+    const res = await query(sql);
+    ctx.body = {
+      code: 200,
+      msg: '删除成功',
+      data: null
+    }
+  } catch (error) {
+    ctx.body = {
+      code: 500,
+      msg: '系统错误',
+      data: error
+    }
+  }
+}
+
 module.exports = {
   getPins,
-  addPin
+  addPin,
+  deletePin
 }
