@@ -39,6 +39,35 @@ async function addPin(ctx) {
   }
 }
 
+// 编辑收藏
+async function editPin(ctx) {
+  const { id, name, tag_id, url } = ctx.request.body;
+  if (!id || !name || (tag_id!==0 && !tag_id) || !url) {
+    ctx.body = {
+      code: 400,
+      msg: '参数错误',
+      data: null
+    }
+    return
+  }
+  try {
+    let sql = `update pin set name='${name}', tag_id=${tag_id}, url='${url}' where id='${id}'`
+    // let sql = `INSERT INTO pin set name='${name}', tag_id=${tag_id}, url='${url}'`;
+    const res = await query(sql);
+    ctx.body = {
+      code: 200,
+      msg: '修改成功',
+      data: { id, name, tag_id, url }
+    }
+  } catch (error) {
+    ctx.body = {
+      code: 500,
+      msg: '系统错误',
+      data: error
+    }
+  }
+}
+
 // 删除收藏
 async function deletePin(ctx) {
   const { id } = ctx.request.body;
@@ -69,5 +98,6 @@ async function deletePin(ctx) {
 module.exports = {
   getPins,
   addPin,
+  editPin,
   deletePin
 }
